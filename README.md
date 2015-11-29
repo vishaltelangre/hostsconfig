@@ -27,7 +27,7 @@ $ hostsconfig -h
     -b, --beautify       Display beautified hosts file on standard output
     -a=, --add=          Add a host entry
     -d=, --delete=       Delete a host entry
-    -s, --save           Delete a host entry
+    -s, --save           Save changes
     -f=, --path=         Path to hosts file (Default: /etc/hosts)
     -h, --help           Show this usage help
     -v, --version        Display version
