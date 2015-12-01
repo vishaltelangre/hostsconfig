@@ -13,9 +13,6 @@ import (
 )
 
 const (
-	humanizedTemplate = "./templates/humanized"
-	standardTemplate  = "./templates/standard"
-
 	creditsLine = `
 
 # ===========================================================
@@ -166,17 +163,13 @@ func (c *Config) BeautifiedPreview() string {
 
 func preview(config *Config, tmpl string, tmplBase string) string {
 	buf := new(bytes.Buffer)
-	t := template.New(tmplBase)
-	t, err := t.ParseFiles(tmpl)
-	if err != nil {
-		log.Fatal(err)
-	}
+	t := template.Must(template.New(tmplBase).Parse(tmpl))
 
 	entries := make(map[string][]HostEntry)
 	entries["IPv4"] = config.IPv4Entries()
 	entries["IPv6"] = config.IPv6Entries()
 
-	err = t.Execute(buf, entries)
+	err := t.Execute(buf, entries)
 	if err != nil {
 		log.Fatal(err)
 	}
